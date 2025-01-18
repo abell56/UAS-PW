@@ -20,5 +20,6 @@ import project_pw.views as pw
 
 urlpatterns = [
     path('', pw.home),
+    path('home-admin/', pw.homeAdmin),
     path('admin/', admin.site.urls),
 ]
