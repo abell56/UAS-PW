@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
         function showSection(section) {
             document.getElementById('dashboard').style.display = section === 'dashboard' ? 'block' : 'none';
             document.getElementById('users').style.display = section === 'users' ? 'block' : 'none';
+            document.getElementById('siswa').style.display = section === 'siswa' ? 'block' : 'none';
         }
     </script>
     <script>
@@ -56,6 +58,7 @@
         });
     </script>
 </head>
+
 <body class="flex">
     <div class="bg-gray-800 text-white w-64 h-screen p-5">
         <h2 class="text-2xl mb-5">Admin Panel</h2>
@@ -73,15 +76,15 @@
                 </a>
             </li>
             <li class="mb-4">
-                <a href="#" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                <a href="#" onclick="showSection('siswa')" class="flex items-center p-2 hover:bg-gray-700 rounded">
                     <i class="fas fa-cogs"></i>
                     <span class="ml-3">Siswa</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                <a href="../home.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
                     <i class="fas fa-sign-out-alt"></i>
-                    <span class="ml-3">Kelas</span>
+                    <span class="ml-3">Kembali</span>
                 </a>
             </li>
         </ul>
@@ -91,10 +94,21 @@
         <div id="dashboard" class="bg-white rounded-lg shadow p-5 mb-5">
             <h1 class="text-3xl">Dashboard</h1>
             <p>Halo Selamat Datang Di Dashboard Admin</p>
-            <div class="max-w-lg mx-auto bg-white rounded-lg shadow-md p-6">  <!-- Memperlebar container -->
+            <div class="mt-6 max-w-sm mx-auto bg-white rounded-lg shadow-lg">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold mb-4">Pengumuman Penting</h2>
+                    <p class="text-gray-700">Selamat datang di platform kami! Pastikan Anda memeriksa pembaruan terbaru
+                        pada sistem dan ikuti petunjuk yang diberikan. Jangan ragu untuk menghubungi tim support jika
+                        ada pertanyaan.</p>
+                </div>
+            </div>
+            <br><br>
+            <h2 class="text-3xl text-center">Kalender Akademik</h2>
+            <div class="max-w-lg mx-auto bg-white rounded-lg shadow-md p-6"> <!-- Memperlebar container -->
                 <div class="flex justify-between items-center mb-4">
                     <button onclick="changeMonth(-1)" class="bg-blue-500 text-white px-4 py-2 rounded">Prev</button>
-                    <h2 id="month" class="text-2xl font-bold text-center flex-grow"></h2>  <!-- Flex-grow untuk memperluas judul -->
+                    <h2 id="month" class="text-2xl font-bold text-center flex-grow"></h2>
+                    <!-- Flex-grow untuk memperluas judul -->
                     <button onclick="changeMonth(1)" class="bg-blue-500 text-white px-4 py-2 rounded">Next</button>
                 </div>
                 <div class="grid grid-cols-7 text-center font-semibold">
@@ -109,7 +123,7 @@
                 <div id="calendar-body" class="grid grid-cols-7 text-center mt-2"></div>
             </div>
         </div>
-        
+
         <div id="users" class="bg-white rounded-lg shadow p-5 hidden">
             <h2 class="text-2xl mb-4">User List</h2>
             <table class="min-w-full bg-white border border-gray-300">
@@ -125,8 +139,8 @@
                 <tbody>
                     <tr>
                         <td class="py-2 px-4 border-b border-gray-300">1</td>
-                        <td class="py-2 px-4 border-b border-gray-300">John Doe</td>
-                        <td class="py-2 px-4 border-b border-gray-300">john@example.com</td>
+                        <td class="py-2 px-4 border-b border-gray-300">Muhammad Alam</td>
+                        <td class="py-2 px-4 border-b border-gray-300">john@gmail.com</td>
                         <td class="py-2 px-4 border-b border-gray-300">Admin</td>
                         <td class="py-2 px-4 border-b border-gray-300">
                             <button class="text-blue-500 hover:underline">Edit</button>
@@ -135,7 +149,27 @@
                     </tr>
                     <tr>
                         <td class="py-2 px-4 border-b border-gray-300">2</td>
-                        <td class="py-2 px-4 border-b border-gray-300">Jane Smith</td>
+                        <td class="py-2 px-4 border-b border-gray-300">Alzafran Nobel Dwi Ari Putra</td>
+                        <td class="py-2 px-4 border-b border-gray-300">alzafrannobel5@gmail.com</td>
+                        <td class="py-2 px-4 border-b border-gray-300">User</td>
+                        <td class="py-2 px-4 border-b border-gray-300">
+                            <button class="text-blue-500 hover:underline">Edit</button>
+                            <button class="text-red-500 hover:underline">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 border-b border-gray-300">2</td>
+                        <td class="py-2 px-4 border-b border-gray-300">Muhammad Iman</td>
+                        <td class="py-2 px-4 border-b border-gray-300">jane@example.com</td>
+                        <td class="py-2 px-4 border-b border-gray-300">User</td>
+                        <td class="py-2 px-4 border-b border-gray-300">
+                            <button class="text-blue-500 hover:underline">Edit</button>
+                            <button class="text-red-500 hover:underline">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 border-b border-gray-300">2</td>
+                        <td class="py-2 px-4 border-b border-gray-300">Al-Hijir</td>
                         <td class="py-2 px-4 border-b border-gray-300">jane@example.com</td>
                         <td class="py-2 px-4 border-b border-gray-300">User</td>
                         <td class="py-2 px-4 border-b border-gray-300">
@@ -145,13 +179,113 @@
                     </tr>
                 </tbody>
             </table>
+            <button id="createButton" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Create
+            </button>
+
+            <!-- Hidden Form for Adding Users -->
+            <div id="createForm" class="hidden bg-gray-100 p-4 rounded-lg border border-gray-300 mb-4">
+                <h3 class="text-lg font-semibold mb-3">Add User</h3>
+                <form id="addUserForm">
+                    <label class="block mb-2">
+                        Name:
+                        <input type="text" id="nameInput" class="w-full p-2 border rounded" required>
+                    </label>
+                    <label class="block mb-2">
+                        Email:
+                        <input type="email" id="emailInput" class="w-full p-2 border rounded" required>
+                    </label>
+                    <label class="block mb-2">
+                        Role:
+                        <select id="roleInput" class="w-full p-2 border rounded" required>
+                            <option value="Admin">Admin</option>
+                            <option value="User">User</option>
+                        </select>
+                    </label>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                        Submit
+                    </button>
+                </form>
+            </div>
         </div>
 
-        <footer class="mt-5 text-center text-gray-600">
-            &copy; 2025 Your Company. All rights reserved.
-        </footer>
+
+    
+        <script>
+            document.getElementById("createButton").addEventListener("click", function () {
+                const createForm = document.getElementById("createForm");
+                createForm.classList.toggle("hidden");
+            });
+        </script>
+    
+     <div id="siswa" class="bg-white rounded-lg shadow p-5 hidden h-screen">
+        <div class="w-full">
+            <h1 class="text-center text-2xl font-bold mb-4">Daftar Siswa - Kelas</h1>
+
+            <div class="mb-6">
+                <p>Tahun Akademik:
+                    <select class="border p-2 rounded-md">
+                        <option value="2024/25">2024/25</option>
+                        <option value="2023/24">2023/24</option>
+                        <option value="2022/23">2022/23</option>
+                    </select>
+                </p>
+                <p>Nama Wali Kelas: <strong>Ibuh Hanifah Aulia M.Pd</strong></p>
+                <p>Ruang Kelas:
+                    <select class="border p-2 rounded-md">
+                        <option value="7A">Kelas - 7A</option>
+                        <option value="7B">Kelas - 7B</option>
+                        <option value="8A">Kelas - 8A</option>
+                        <option value="8B">Kelas - 8B</option>
+                    </select>
+                </p>
+                <table class="min-w-full border border-collapse border-gray-300">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="border border-gray-300 px-4 py-2">No</th>
+                            <th class="border border-gray-300 px-4 py-2">NIS</th>
+                            <th class="border border-gray-300 px-4 py-2">Nama Lengkap</th>
+                            <th class="border border-gray-300 px-4 py-2">Umur</th>
+                            <th class="border border-gray-300 px-4 py-2">Kehadiran</th>
+                            <th class="border border-gray-300 px-4 py-2">Aktif</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover:bg-gray-100">
+                            <td class="border border-gray-300 px-4 py-2">1</td>
+                            <td class="border border-gray-300 px-4 py-2">012232</td>
+                            <td class="border border-gray-300 px-4 py-2">Emah Suemah</td>
+                            <td class="border border-gray-300 px-4 py-2">15</td>
+                            <td class="border border-gray-300 px-4 py-2">95%</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">✔</td>
+                        </tr>
+                        <tr class="hover:bg-gray-100">
+                            <td class="border border-gray-300 px-4 py-2">2</td>
+                            <td class="border border-gray-300 px-4 py-2">012234</td>
+                            <td class="border border-gray-300 px-4 py-2">Ridwan Hanif</td>
+                            <td class="border border-gray-300 px-4 py-2">14</td>
+                            <td class="border border-gray-300 px-4 py-2">100%</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">✔</td>
+                        </tr>
+                        <tr class="hover:bg-gray-100">
+                            <td class="border border-gray-300 px-4 py-2">3</td>
+                            <td class="border border-gray-300 px-4 py-2">012236</td>
+                            <td class="border border-gray-300 px-4 py-2">Ari Marwanti</td>
+                            <td class="border border-gray-300 px-4 py-2">15</td>
+                            <td class="border border-gray-300 px-4 py-2">97%</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">✔</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <footer class="mt-5 text-center text-gray-600">
+                &copy; 2025 Your Company. All rights reserved.
+            </footer>
+        </div>
     </div>
+    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 </body>
+
 </html>
