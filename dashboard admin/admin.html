@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script>
+        function showSection(section) {
+            document.getElementById('dashboard').style.display = section === 'dashboard' ? 'block' : 'none';
+            document.getElementById('users').style.display = section === 'users' ? 'block' : 'none';
+        }
+    </script>
+    <script>
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+
+        function renderCalendar(month, year) {
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const firstDay = new Date(year, month, 1).getDay();
+
+            const calendarBody = document.getElementById('calendar-body');
+            calendarBody.innerHTML = '';
+
+            document.getElementById('month').innerText = `${monthNames[month]} ${year}`;
+
+            for (let i = 0; i < firstDay; i++) {
+                const cell = document.createElement('div');
+                cell.className = "p-4";  // Perbesar padding
+                calendarBody.appendChild(cell);
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const cell = document.createElement('div');
+                cell.className = "p-4 border border-gray-300 text-center";  // Perbesar padding
+                cell.innerText = day;
+                calendarBody.appendChild(cell);
+            }
+        }
+
+        function changeMonth(delta) {
+            currentMonth += delta;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            } else if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar(currentMonth, currentYear);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCalendar(currentMonth, currentYear);
+        });
+    </script>
+</head>
+<body class="flex">
+    <div class="bg-gray-800 text-white w-64 h-screen p-5">
+        <h2 class="text-2xl mb-5">Admin Panel</h2>
+        <ul>
+            <li class="mb-4">
+                <a href="#" onclick="showSection('dashboard')" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span class="ml-3">Dashboard</span>
+                </a>
+            </li>
+            <li class="mb-4">
+                <a href="#" onclick="showSection('users')" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                    <i class="fas fa-users"></i>
+                    <span class="ml-3">Pegawai</span>
+                </a>
+            </li>
+            <li class="mb-4">
+                <a href="#" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                    <i class="fas fa-cogs"></i>
+                    <span class="ml-3">Siswa</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="ml-3">Kelas</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="flex-1 p-10">
+        <div id="dashboard" class="bg-white rounded-lg shadow p-5 mb-5">
+            <h1 class="text-3xl">Dashboard</h1>
+            <p>Halo Selamat Datang Di Dashboard Admin</p>
+            <div class="max-w-lg mx-auto bg-white rounded-lg shadow-md p-6">  <!-- Memperlebar container -->
+                <div class="flex justify-between items-center mb-4">
+                    <button onclick="changeMonth(-1)" class="bg-blue-500 text-white px-4 py-2 rounded">Prev</button>
+                    <h2 id="month" class="text-2xl font-bold text-center flex-grow"></h2>  <!-- Flex-grow untuk memperluas judul -->
+                    <button onclick="changeMonth(1)" class="bg-blue-500 text-white px-4 py-2 rounded">Next</button>
+                </div>
+                <div class="grid grid-cols-7 text-center font-semibold">
+                    <div class="w-12">Minggu</div>
+                    <div class="w-12">Senin</div>
+                    <div class="w-12">Selasa</div>
+                    <div class="w-12">Rabu</div>
+                    <div class="w-12">Kamis</div>
+                    <div class="w-12">Jumat</div>
+                    <div class="w-12">Sabtu</div>
+                </div>
+                <div id="calendar-body" class="grid grid-cols-7 text-center mt-2"></div>
+            </div>
+        </div>
+        
+        <div id="users" class="bg-white rounded-lg shadow p-5 hidden">
+            <h2 class="text-2xl mb-4">User List</h2>
+            <table class="min-w-full bg-white border border-gray-300">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4 border-b border-gray-300 text-left">ID</th>
+                        <th class="py-2 px-4 border-b border-gray-300 text-left">Name</th>
+                        <th class="py-2 px-4 border-b border-gray-300 text-left">Email</th>
+                        <th class="py-2 px-4 border-b border-gray-300 text-left">Role</th>
+                        <th class="py-2 px-4 border-b border-gray-300 text-left">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="py-2 px-4 border-b border-gray-300">1</td>
+                        <td class="py-2 px-4 border-b border-gray-300">John Doe</td>
+                        <td class="py-2 px-4 border-b border-gray-300">john@example.com</td>
+                        <td class="py-2 px-4 border-b border-gray-300">Admin</td>
+                        <td class="py-2 px-4 border-b border-gray-300">
+                            <button class="text-blue-500 hover:underline">Edit</button>
+                            <button class="text-red-500 hover:underline">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 border-b border-gray-300">2</td>
+                        <td class="py-2 px-4 border-b border-gray-300">Jane Smith</td>
+                        <td class="py-2 px-4 border-b border-gray-300">jane@example.com</td>
+                        <td class="py-2 px-4 border-b border-gray-300">User</td>
+                        <td class="py-2 px-4 border-b border-gray-300">
+                            <button class="text-blue-500 hover:underline">Edit</button>
+                            <button class="text-red-500 hover:underline">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer class="mt-5 text-center text-gray-600">
+            &copy; 2025 Your Company. All rights reserved.
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+</html>
