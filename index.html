@@ -4,6 +4,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Landing Page Sekolah</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    window.onload = function() {
+        // Cek apakah pengguna sudah login
+        if (!localStorage.getItem('isLoggedIn')) {
+            // Jika belum login, alihkan ke login.html
+            window.location.href = 'login.html';
+        }
+    };
+  </script>
+  
 </head>
 <body class="font-sans antialiased bg-gray-50">
   <!-- Header Section -->
@@ -14,6 +24,9 @@
         <a href="about.html" class="hover:text-blue-300">About us</a>
         <a href="contact.html" class="hover:text-blue-300">Contact Us</a>
         <a href="dashboard admin/admin.html" class="hover:text-blue-300">Homepage Admin</a>
+        <button id="logout-btn" class="hover:text-blue-300 bg-red-500 text-white px-4 py-2 rounded-lg">
+          Logout
+        </button>
       </nav>
       <button class="md:hidden" id="menu-btn">
         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -103,9 +116,18 @@
       mobileMenu.classList.toggle('hidden');
     });
   </script>
+  <script>
+    // Tambahkan event listener untuk tombol logout
+    const logoutBtn = document.getElementById('logout-btn');
+    logoutBtn.addEventListener('click', () => {
+      // Hapus item isLoggedIn dari localStorage
+      localStorage.removeItem('isLoggedIn');
+      // Redirect ke halaman login
+      window.location.href = 'login.html';
+    });
+  </script>
 </body>
 </html>
 
 
 
-{% endblock content %}

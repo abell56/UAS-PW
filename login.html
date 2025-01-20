@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script>
+        let isLoggedIn = false; // Inisialisasi status login
+
+        function login(event) {
+            event.preventDefault(); // Mencegah form dari pengiriman default
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Validasi sederhana
+            if (username && password) {
+                isLoggedIn = true; // Set status login menjadi true
+                // Redirect ke halaman index.html
+                window.location.href = 'index.html';
+            } else {
+                alert('Mohon isi username dan password!');
+            }
+
+            // Simulasikan proses login
+            localStorage.setItem('isLoggedIn', 'true');
+            window.location.href = 'index.html';
+        }
+    </script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+        <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+        <form onsubmit="login(event)">
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                <input type="text" id="username" name="username" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required>
+            </div>
+            <div class="mb-6">
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="password" name="password" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white rounded-md p-2">Login</button>
+        </form>
+        <p class="mt-4 text-center"><a href="#" class="text-blue-500">Forgot Password?</a></p>
+    </div>
+</body>
+</html>
